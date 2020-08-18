@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
 <style>
+* {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  float: left;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid rgb(0,0,0);
+}
+.col-1 {width: 25%;}
+.col-2 {width: 50%;}
+.col-3 {width: 75%;}
+.col-4 {width: 100%;}
 </style>
 <body>
-<div id = "sao">50%</div>
-<input id = "sai" type="range" min="0" max="10" value="5">
+<div class = "row">
+  <div class = "col-4">
+    <div id = "smoa"></div>
+    <input id = "smob" type = "range" min = "0" max = "40" value = "20" disabled>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col-1">
+    <div id = "sao">Slide</div>
+    <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5">
+  </div>
+  <div class = "col-1">
+    <div id = "sbo">Slide</div>
+    <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5">
+  </div>
+  <div class = "col-1">
+    <div id = "sco">Slide</div>
+    <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5">
+  </div>
+  <div class = "col-1">
+    <div id = "sdo">Slide</div>
+    <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5">
+  </div>
+</div>
 </body>
 <script>
-document.getElementById("sai").oninput = function(){
+function slide(){
   document.getElementById("sao").innerHTML = document.getElementById("sai").value*10 + "%";
+  document.getElementById("sbo").innerHTML = document.getElementById("sbi").value*10 + "%";
+  document.getElementById("sco").innerHTML = document.getElementById("sci").value*10 + "%";
+  document.getElementById("sdo").innerHTML = document.getElementById("sdi").value*10 + "%";
+  document.getElementById("smob").value = 40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value;
+  document.getElementById("smoa").innerHTML = 2.5*(40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value) + "%";
 }
 </script>
 </html>
