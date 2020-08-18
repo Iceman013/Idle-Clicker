@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function getTime() {
+  var today = new Date();
+  return time = 3600000*today.getHours() + 60000*today.getMinutes() + 1000*today.getSeconds() + today.getMilliseconds();
+}
+function showTime(){
+  document.getElementById("time").innerHTML = getTime();
+  var timeout = setTimeout(showTime,1);
+}
+</script>
+</head>
+<body onload="showTime()">
+<h1 id="time"></h1>
+</body>
+</html>
