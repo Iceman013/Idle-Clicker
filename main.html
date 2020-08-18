@@ -11,7 +11,7 @@
 }
 [class*="col-"] {
   float: left;
-  padding: 0px;
+  padding: 2px;
   text-align: center;
   border: 1px solid rgb(0,0,0);
 }
@@ -19,30 +19,36 @@
 .col-2 {width: 50%;}
 .col-3 {width: 75%;}
 .col-4 {width: 100%;}
+.slider {width: 100%;}
 </style>
 <body>
 <div class = "row">
   <div class = "col-4">
-    <div id = "smoa"></div>
-    <input id = "smob" type = "range" min = "0" max = "40" value = "20" disabled>
+    <div>Teachers</div>
+    <div id = "smoa">50%</div>
+    <input id = "smob" type = "range" min = "0" max = "40" value = "20" class = "slider" disabled>
   </div>
 </div>
 <div class = "row">
   <div class = "col-1">
-    <div id = "sao">Slide</div>
-    <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5">
+    <div>Scientists</div>
+    <div id = "sao">50%</div>
+    <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div id = "sbo">Slide</div>
-    <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5">
+    <div>Builders</div>
+    <div id = "sbo">50%</div>
+    <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div id = "sco">Slide</div>
-    <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5">
+    <div>Explorers</div>
+    <div id = "sco">50%</div>
+    <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div id = "sdo">Slide</div>
-    <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5">
+    <div>Map Makers</div>
+    <div id = "sdo">50%</div>
+    <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
 </div>
 </body>
