@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
+<style>
+</style>
+<body>
+<div id = "sao">50%</div>
+<input id = "sai" type="range" min="0" max="10" value="5">
+</body>
 <script>
-function getTime() {
-  var today = new Date();
-  return time = 3600000*today.getHours() + 60000*today.getMinutes() + 1000*today.getSeconds() + today.getMilliseconds();
-}
-function showTime(){
-  document.getElementById("time").innerHTML = getTime();
-  var timeout = setTimeout(showTime,1);
+document.getElementById("sai").oninput = function(){
+  document.getElementById("sao").innerHTML = document.getElementById("sai").value*10 + "%";
 }
 </script>
-</head>
-<body onload="showTime()">
-<h1 id="time"></h1>
-</body>
 </html>
