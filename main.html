@@ -83,7 +83,8 @@
 </div>
 </body>
 <script>
-var program = setInterval(perform, 10);
+var milsec = 10;
+var program = setInterval(perform, milsec);
 var sciGro = 0;
 var detGro = 0;
 var supGro = 0;
@@ -101,10 +102,11 @@ function slide(){
   document.getElementById("smoa").innerHTML = -2.5*(0 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value) + "%";
 }
 function getVal(){
-  sciGro = document.getElementById("sai").value/100;
-  detGro = document.getElementById("sbi").value/100;
-  supGro = document.getElementById("sci").value/100;
-  mapGro = document.getElementById("sdi").value/100;
+  var strain = (milsec/1000)*((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40);
+  sciGro = strain*document.getElementById("sai").value;
+  detGro = strain*document.getElementById("sbi").value;
+  supGro = strain*document.getElementById("sci").value;
+  mapGro = strain*document.getElementById("sdi").value;
 }
 function perform(){
   getVal();
@@ -117,8 +119,8 @@ function perform(){
   document.getElementById("supVal").innerHTML = Math.floor(supSta);
   document.getElementById("mapVal").innerHTML = Math.floor(mapSta);
 }
-function but(var inp){
+/*function but(var inp){
   
-}
+}*/
 </script>
 </html>
