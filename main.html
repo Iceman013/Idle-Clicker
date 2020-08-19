@@ -69,16 +69,20 @@
 </div>
 <div class = "row">
   <div class = "col-1">
-    <button class = "button" id = "bua" onclick = "but(1)">A</button>
+    <b id = "buaan"></b><br>
+    <div>Cost</div>
+    <div id = "buaac"></div>
+    <div>Boosts</div>
+    <div id = "buaab"></div>
+    <button class = "button" id = "buaad"></button>
   </div>
   <div class = "col-1">
-    <button class = "button" id = "bub" onclick = "but(2)">B</button>
-  </div>
-  <div class = "col-1">
-    <button class = "button" id = "buc" onclick = "but(3)">C</button>
-  </div>
-  <div class = "col-1">
-    <button class = "button" id = "bud" onclick = "but(4)">D</button>
+    <b id = "buban"></b><br>
+    <div>Cost</div>
+    <div id = "bubac"></div>
+    <div>Boosts</div>
+    <div id = "bubab"></div>
+    <button class = "button" id = "bubad"></button>
   </div>
 </div>
 </body>
@@ -110,6 +114,7 @@ function getVal(){
 }
 function perform(){
   getVal();
+  getBut();
   sciSta = -1*(0 - sciSta - sciGro);
   detSta = -1*(0 - detSta - detGro);
   supSta = -1*(0 - supSta - supGro);
@@ -119,8 +124,41 @@ function perform(){
   document.getElementById("supVal").innerHTML = Math.floor(supSta);
   document.getElementById("mapVal").innerHTML = Math.floor(mapSta);
 }
-/*function but(var inp){
-  
-}*/
+var buts = {
+  {"buaan","buaac","buaab","buaad"},
+  {"buban","bubac","bubab","bubad"}
+};
+var ons = {
+  true,
+  false
+};
+var nams = {
+  "Ink",
+  "Paper"
+};
+var coss = {
+  {100,0,100,0},
+  {0,100,0,100}
+};
+var boos = {
+  {1,2,1,1},
+  {1,1,2,1}
+};
+var dess = {
+  "This is words and stuffs.",
+  "This is other words and stuffs."
+};
+function getBut(){
+  var a = 0;
+  while (a < buts.length){
+    if (ons[a]){
+      document.getElementById(buts[a][0]).innerHTML = "oof";
+      document.getElementById(buts[a][1]).innerHTML = "oofk";
+      document.getElementById(buts[a][2]).innerHTML = "oofg";
+      document.getElementById(buts[a][3]).innerHTML = "oofka";
+    }
+    a = a + 1;
+  }
+}
 </script>
 </html>
