@@ -24,42 +24,83 @@
 <body>
 <div class = "row">
   <div class = "col-4">
-    <div>Teachers</div>
+    <div>Strain</div>
     <div id = "smoa">50%</div>
     <input id = "smob" type = "range" min = "0" max = "40" value = "20" class = "slider" disabled>
   </div>
 </div>
 <div class = "row">
   <div class = "col-1">
-    <div>Scientists</div>
+    <div>Science</div>
     <div id = "sao">50%</div>
     <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div>Builders</div>
+    <div>Detail</div>
     <div id = "sbo">50%</div>
+    
     <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div>Explorers</div>
+    <div>Map Supplies</div>
     <div id = "sco">50%</div>
     <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
   <div class = "col-1">
-    <div>Map Makers</div>
+    <div>Map Creation</div>
     <div id = "sdo">50%</div>
     <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5" class = "slider">
   </div>
 </div>
+<div class = "row">
+  <div class = "col-1">
+    <div id = "sciVal">0</div>
+  </div>
+  <div class = "col-1">
+    <div id = "detVal">0</div>
+  </div>
+  <div class = "col-1">
+    <div id = "supVal">0</div>
+  </div>
+  <div class = "col-1">
+    <div id = "mapVal">0</div>
+  </div>
+</div>
 </body>
 <script>
+var program = setInterval(perform, 10);
+var sciGro = 0;
+var detGro = 0;
+var supGro = 0;
+var mapGro = 0;
+var sciSta = 0;
+var detSta = 0;
+var supSta = 0;
+var mapSta = 0;
 function slide(){
   document.getElementById("sao").innerHTML = document.getElementById("sai").value*10 + "%";
   document.getElementById("sbo").innerHTML = document.getElementById("sbi").value*10 + "%";
   document.getElementById("sco").innerHTML = document.getElementById("sci").value*10 + "%";
   document.getElementById("sdo").innerHTML = document.getElementById("sdi").value*10 + "%";
-  document.getElementById("smob").value = 40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value;
-  document.getElementById("smoa").innerHTML = 2.5*(40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value) + "%";
+  document.getElementById("smob").value = -1*(0 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value);
+  document.getElementById("smoa").innerHTML = -2.5*(0 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value) + "%";
+}
+function getVal(){
+  sciGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sai").value/100;
+  detGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sbi").value/100;
+  supGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sci").value/100;
+  mapGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sdi").value/100;
+}
+function perform(){
+  getVal();
+  sciSta = -1*(0 - sciSta - sciGro);
+  detSta = -1*(0 - detSta - detGro);
+  supSta = -1*(0 - supSta - supGro);
+  mapSta = -1*(0 - mapSta - mapGro);
+  document.getElementById("sciVal").innerHTML = Math.floor(sciSta);
+  document.getElementById("detVal").innerHTML = Math.floor(detSta);
+  document.getElementById("supVal").innerHTML = Math.floor(supSta);
+  document.getElementById("mapVal").innerHTML = Math.floor(mapSta);
 }
 </script>
 </html>
