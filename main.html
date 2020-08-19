@@ -20,6 +20,7 @@
 .col-3 {width: 75%;}
 .col-4 {width: 100%;}
 .slider {width: 100%;}
+.button {width: 100%;}
 </style>
 <body>
 <div class = "row">
@@ -66,6 +67,20 @@
     <div id = "mapVal">0</div>
   </div>
 </div>
+<div class = "row">
+  <div class = "col-1">
+    <button class = "button" id = "bua" onclick = "but(1)">A</button>
+  </div>
+  <div class = "col-1">
+    <button class = "button" id = "bub" onclick = "but(2)">B</button>
+  </div>
+  <div class = "col-1">
+    <button class = "button" id = "buc" onclick = "but(3)">C</button>
+  </div>
+  <div class = "col-1">
+    <button class = "button" id = "bud" onclick = "but(4)">D</button>
+  </div>
+</div>
 </body>
 <script>
 var program = setInterval(perform, 10);
@@ -86,10 +101,10 @@ function slide(){
   document.getElementById("smoa").innerHTML = -2.5*(0 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value) + "%";
 }
 function getVal(){
-  sciGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sai").value/100;
-  detGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sbi").value/100;
-  supGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sci").value/100;
-  mapGro = ((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40)*document.getElementById("sdi").value/100;
+  sciGro = document.getElementById("sai").value/100;
+  detGro = document.getElementById("sbi").value/100;
+  supGro = document.getElementById("sci").value/100;
+  mapGro = document.getElementById("sdi").value/100;
 }
 function perform(){
   getVal();
@@ -101,6 +116,9 @@ function perform(){
   document.getElementById("detVal").innerHTML = Math.floor(detSta);
   document.getElementById("supVal").innerHTML = Math.floor(supSta);
   document.getElementById("mapVal").innerHTML = Math.floor(mapSta);
+}
+function but(var inp){
+  
 }
 </script>
 </html>
