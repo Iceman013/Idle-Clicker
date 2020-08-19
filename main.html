@@ -44,13 +44,13 @@
     <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
 </text>
 <text class = "row">
-  <text class = "col-1"><text id = "sciVal">0</text>
+  <text class = "col-1"><text id = "sciVal"></text>
   </text>
-  <text class = "col-1"><text id = "detVal">0</text>
+  <text class = "col-1"><text id = "detVal"></text>
   </text>
-  <text class = "col-1"><text id = "supVal">0</text>
+  <text class = "col-1"><text id = "supVal"></text>
   </text>
-  <text class = "col-1"><text id = "mapVal">0</text>
+  <text class = "col-1"><text id = "mapVal"></text>
   </text>
 </text>
 <text class = "row">
@@ -58,25 +58,45 @@
   </text>
   <text class = "col-1"><b id = "buban"></b>
   </text>
-</text>
-<text class = "row">
-  <text class = "col-2"><text>Cost</text>
-    <text id = "buaac">c</text>
+  <text class = "col-1"><b id = "bucan"></b>
   </text>
-  <text class = "col-2"><text>Boosts</text>
-    <text id = "buaab">b</text>
-  </text>
-  <text class = "col-2"><text>Cost</text>
-    <text id = "bubac">c</text>
-  </text>
-  <text class = "col-2"><text>Boosts</text>
-    <text id = "bubab">b</text>
+  <text class = "col-1"><b id = "budan"></b>
   </text>
 </text>
 <text class = "row">
-  <text class = "col-1"><button class = "button" id = "buaad">d</button>
+  <text class = "col-2"><text>Cost</text>
+    <text id = "buaac"></text>
   </text>
-  <text class = "col-1"><button class = "button" id = "bubad">d</button>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "buaab"></text>
+  </text>
+  <text class = "col-2"><text>Cost</text>
+    <text id = "bubac"></text>
+  </text>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "bubab"></text>
+  </text>
+  <text class = "col-2"><text>Cost</text>
+    <text id = "bucac"></text>
+  </text>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "bucab"></text>
+  </text>
+  <text class = "col-2"><text>Cost</text>
+    <text id = "budac"></text>
+  </text>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "budab"></text>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1"><button class = "button" id = "buaad" onclick = "buy(0)"></button>
+  </text>
+  <text class = "col-1"><button class = "button" id = "bubad" onclick = "buy(1)"></button>
+  </text>
+  <text class = "col-1"><button class = "button" id = "bucad" onclick = "buy(2)"></button>
+  </text>
+  <text class = "col-1"><button class = "button" id = "budad" onclick = "buy(3)"></button>
   </text>
 </text>
 </body>
@@ -87,6 +107,10 @@ var sciGro = 0;
 var detGro = 0;
 var supGro = 0;
 var mapGro = 0;
+var sciBoo = 1;
+var detBoo = 1;
+var supBoo = 1;
+var mapBoo = 1;
 var sciSta = 0;
 var detSta = 0;
 var supSta = 0;
@@ -101,10 +125,10 @@ function slide(){
 }
 function getVal(){
   var strain = (milsec/1000)*((40 - document.getElementById("sai").value - document.getElementById("sbi").value - document.getElementById("sci").value - document.getElementById("sdi").value)/40);
-  sciGro = strain*document.getElementById("sai").value;
-  detGro = strain*document.getElementById("sbi").value;
-  supGro = strain*document.getElementById("sci").value;
-  mapGro = strain*document.getElementById("sdi").value;
+  sciGro = sciBoo*strain*document.getElementById("sai").value;
+  detGro = detBoo*strain*document.getElementById("sbi").value;
+  supGro = supBoo*strain*document.getElementById("sci").value;
+  mapGro = mapBoo*strain*document.getElementById("sdi").value;
 }
 function perform(){
   getVal();
@@ -120,36 +144,57 @@ function perform(){
 }
 var buts = [
   ["buaan","buaac","buaab","buaad"],
-  ["buban","bubac","bubab","bubad"]
+  ["buban","bubac","bubab","bubad"],
+  ["bucan","bucac","bucab","bucad"],
+  ["budan","budac","budab","budad"]
 ];
 var ons = [
-  true,
-  true
+  false,
+  false,
+  false,
+  false
 ];
 var nams = [
   "Ink",
-  "Paper"
+  "Paper",
+  "Small Font Labels",
+  "Elivation Indicators"
 ];
 var dess = [
   "This is words and stuffs.",
-  "This is other words and stuffs."
+  "This is other words and stuffs.",
+  "More.",
+  "A bit more."
 ];
 var coss = [
   [100,0,100,0],
-  [0,100,0,100]
+  [100,0,100,0],
+  [100,0,100,0],
+  [100,0,100,0]
 ];
 var boos = [
   [1,2,1,1],
+  [1,2,1,1],
+  [1,2,1,1],
   [1,1,2,1]
 ];
+var disp = [0,0,0,0];
 function getBut(){
   var a = 0;
-  while (a < ons.length){
-    if (ons[a]){
-      document.getElementById(buts[a][0]).innerHTML = nams[a];
-      document.getElementById(buts[a][1]).innerHTML = coss[a][0] + "\n" + coss[a][1] + "\n" + coss[a][2] + "\n" + coss[a][3];
-      document.getElementById(buts[a][2]).innerHTML = boos[a][0] + "\n" + boos[a][1] + "\n" + boos[a][2] + "\n" + boos[a][3];
-      document.getElementById(buts[a][3]).innerHTML = dess[a];
+  var b = -1;
+  while (b < 3){
+    if (ons[a] == false){
+      b = b + 1;
+      disp[b] = a;
+      document.getElementById(buts[b][0]).innerHTML = nams[a];
+      document.getElementById(buts[b][1]).innerHTML = coss[a][0] + "\n" + coss[a][1] + "\n" + coss[a][2] + "\n" + coss[a][3];
+      document.getElementById(buts[b][2]).innerHTML = boos[a][0] + "\n" + boos[a][1] + "\n" + boos[a][2] + "\n" + boos[a][3];
+      document.getElementById(buts[b][3]).innerHTML = dess[a];
+      if ((sciSta >= coss[a][0]) && (detSta >= coss[a][1]) && (supSta >= coss[a][2]) && (mapSta >= coss[a][3])){
+        document.getElementById(buts[b][3]).disabled = false;
+      } else {
+        document.getElementById(buts[b][3]).disabled = true;
+      }
     }
     a = a + 1;
   }
