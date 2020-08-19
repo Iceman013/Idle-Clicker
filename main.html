@@ -199,5 +199,15 @@ function getBut(){
     a = a + 1;
   }
 }
+function buy(inp){
+  sciSta = sciSta - coss[disp[inp]][0];
+  detSta = detSta - coss[disp[inp]][1];
+  supSta = supSta - coss[disp[inp]][2];
+  mapSta = mapSta - coss[disp[inp]][3];
+  sciBoo = sciBoo*boos[disp[inp]][0];
+  detBoo = detBoo*boos[disp[inp]][1];
+  supBoo = supBoo*boos[disp[inp]][2];
+  mapBoo = mapBoo*boos[disp[inp]][3];
+}
 </script>
 </html>
