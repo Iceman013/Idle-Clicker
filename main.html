@@ -14,77 +14,71 @@
   padding: 2px;
   text-align: center;
   border: 1px solid rgb(0,0,0);
+  white-space: pre-line;
 }
 .col-1 {width: 25%;}
-.col-2 {width: 50%;}
-.col-3 {width: 75%;}
+.col-2 {width: 12.5%;}
+.col-3 {width: 50%;}
 .col-4 {width: 100%;}
 .slider {width: 100%;}
 .button {width: 100%;}
 </style>
 <body>
-<div class = "row">
-  <div class = "col-4">
-    <div>Strain</div>
-    <div id = "smoa">50%</div>
-    <input id = "smob" type = "range" min = "0" max = "40" value = "20" class = "slider" disabled>
-  </div>
-</div>
-<div class = "row">
-  <div class = "col-1">
-    <div>Science</div>
-    <div id = "sao">50%</div>
-    <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5" class = "slider">
-  </div>
-  <div class = "col-1">
-    <div>Detail</div>
-    <div id = "sbo">50%</div>
-    
-    <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5" class = "slider">
-  </div>
-  <div class = "col-1">
-    <div>Map Supplies</div>
-    <div id = "sco">50%</div>
-    <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5" class = "slider">
-  </div>
-  <div class = "col-1">
-    <div>Map Creation</div>
-    <div id = "sdo">50%</div>
-    <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5" class = "slider">
-  </div>
-</div>
-<div class = "row">
-  <div class = "col-1">
-    <div id = "sciVal">0</div>
-  </div>
-  <div class = "col-1">
-    <div id = "detVal">0</div>
-  </div>
-  <div class = "col-1">
-    <div id = "supVal">0</div>
-  </div>
-  <div class = "col-1">
-    <div id = "mapVal">0</div>
-  </div>
-</div>
-<div class = "row">
-  <div class = "col-1">
-    <b id = "buaan"></b><br>
-    <div>Cost</div>
-    <div id = "buaac"></div>
-    <div>Boosts</div>
-    <div id = "buaab"></div>
-    <button class = "button" id = "buaad"></button>
-  </div>
-  <div class = "col-1">
-    <b id = "buban"></b><br>
-    <div>Cost</div>
-    <div id = "bubac"></div>
-    <div>Boosts</div>
-    <div id = "bubab"></div>
-    <button class = "button" id = "bubad"></button>
-  </div>
-</div>
+<text class = "row">
+  <text class = "col-4"><text>Strain</text>
+    <text id = "smoa">50%</text>
+    <input id = "smob" type = "range" min = "0" max = "40" value = "20" class = "slider" disabled></text>
+</text>
+<text class = "row">
+  <text class = "col-1"><text>Science</text>
+    <text id = "sao">50%</text>
+    <input oninput = "slide()" id = "sai" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+  <text class = "col-1"><text>Detail</text>
+    <text id = "sbo">50%</text>
+    <input oninput = "slide()" id = "sbi" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+  <text class = "col-1"><text>Map Supplies</text>
+    <text id = "sco">50%</text>
+    <input oninput = "slide()" id = "sci" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+  <text class = "col-1"><text>Map Creation</text>
+    <text id = "sdo">50%</text>
+    <input oninput = "slide()" id = "sdi" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+</text>
+<text class = "row">
+  <text class = "col-1"><text id = "sciVal">0</text>
+  </text>
+  <text class = "col-1"><text id = "detVal">0</text>
+  </text>
+  <text class = "col-1"><text id = "supVal">0</text>
+  </text>
+  <text class = "col-1"><text id = "mapVal">0</text>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1"><b id = "buaan"></b>
+  </text>
+  <text class = "col-1"><b id = "buban"></b>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-2"><text>Cost</text>
+    <text id = "buaac">c</text>
+  </text>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "buaab">b</text>
+  </text>
+  <text class = "col-2"><text>Cost</text>
+    <text id = "bubac">c</text>
+  </text>
+  <text class = "col-2"><text>Boosts</text>
+    <text id = "bubab">b</text>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1"><button class = "button" id = "buaad">d</button>
+  </text>
+  <text class = "col-1"><button class = "button" id = "bubad">d</button>
+  </text>
+</text>
 </body>
 <script>
 var milsec = 10;
@@ -124,38 +118,38 @@ function perform(){
   document.getElementById("supVal").innerHTML = Math.floor(supSta);
   document.getElementById("mapVal").innerHTML = Math.floor(mapSta);
 }
-var buts = {
-  {"buaan","buaac","buaab","buaad"},
-  {"buban","bubac","bubab","bubad"}
-};
-var ons = {
+var buts = [
+  ["buaan","buaac","buaab","buaad"],
+  ["buban","bubac","bubab","bubad"]
+];
+var ons = [
   true,
-  false
-};
-var nams = {
+  true
+];
+var nams = [
   "Ink",
   "Paper"
-};
-var coss = {
-  {100,0,100,0},
-  {0,100,0,100}
-};
-var boos = {
-  {1,2,1,1},
-  {1,1,2,1}
-};
-var dess = {
+];
+var dess = [
   "This is words and stuffs.",
   "This is other words and stuffs."
-};
+];
+var coss = [
+  [100,0,100,0],
+  [0,100,0,100]
+];
+var boos = [
+  [1,2,1,1],
+  [1,1,2,1]
+];
 function getBut(){
   var a = 0;
-  while (a < buts.length){
+  while (a < ons.length){
     if (ons[a]){
-      document.getElementById(buts[a][0]).innerHTML = "oof";
-      document.getElementById(buts[a][1]).innerHTML = "oofk";
-      document.getElementById(buts[a][2]).innerHTML = "oofg";
-      document.getElementById(buts[a][3]).innerHTML = "oofka";
+      document.getElementById(buts[a][0]).innerHTML = nams[a];
+      document.getElementById(buts[a][1]).innerHTML = coss[a][0] + "\n" + coss[a][1] + "\n" + coss[a][2] + "\n" + coss[a][3];
+      document.getElementById(buts[a][2]).innerHTML = boos[a][0] + "\n" + boos[a][1] + "\n" + boos[a][2] + "\n" + boos[a][3];
+      document.getElementById(buts[a][3]).innerHTML = dess[a];
     }
     a = a + 1;
   }
