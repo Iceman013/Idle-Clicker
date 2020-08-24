@@ -1,1 +1,77 @@
-
+<!DOCTYPE html>
+<html>
+<style>
+* {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  float: left;
+  padding: 2px;
+  text-align: center;
+  border: 1px solid rgb(0,0,0);
+  white-space: pre-line;
+}
+.col-1 {width: 12.5%;}
+.col-2 {width: 25%;}
+.col-3 {width: 50%;}
+.col-4 {width: 75%;}
+.col-5 {width: 100%;}
+.slider {width: 100%;}
+.button {width: 100%;}
+</style>
+<body>
+<text class = "row">
+  <text class = "col-5"><text>Description</text>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1"><text>Clean</text>
+  </text>
+  <text class = "col-4"><input  oninput = "slide()" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+  <text class = "col-1"><text>Grow</text>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1">Red Maple
+  <button oninput = "buta()" id = "bua"></button></text>
+  <text class = "col-1">Loblolly Pine
+  <button oninput = "butb()" id = "bub"></button></text>
+  <text class = "col-1">Sweetgum
+  <button oninput = "butc()" id = "buc"></button></text>
+  <text class = "col-1">Douglas Fir
+  <button oninput = "butd()" id = "bud"></button></text>
+  <text class = "col-1">Quaking Aspen
+  <button oninput = "bute()" id = "bue"></button></text>
+  <text class = "col-1">Sugar Maple
+  <button oninput = "butf()" id = "buf"></button></text>
+  <text class = "col-1">Balsam Fir
+  <button oninput = "butg()" id = "bug"></button></text>
+  <text class = "col-1">Flowering Dogwood
+  <button oninput = "buth()" id = "buh"></button></text>
+</text>
+</body>
+<script>
+var milsec = 10;
+var program = setInterval(perform, milsec);
+var lis = [1,0,0,0,0,0,0,0];
+var clean = 0;
+function perform(){
+  document.getElementById("bua").innerHTML = cost(0);
+  document.getElementById("bub").innerHTML = cost(1);
+  document.getElementById("buc").innerHTML = cost(2);
+  document.getElementById("bud").innerHTML = cost(3);
+  document.getElementById("bue").innerHTML = cost(4);
+  document.getElementById("buf").innerHTML = cost(5);
+  document.getElementById("bug").innerHTML = cost(6);
+  document.getElementById("buh").innerHTML = cost(7);
+}
+function cost(inp){
+  return Math.ceil(Math.pow(10,inp + 1)*Math.pow(1.1,lis[inp]));
+}
+</script>
+</html>
