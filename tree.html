@@ -32,27 +32,31 @@
 <text class = "row">
   <text class = "col-1"><text>Clean</text>
   </text>
-  <text class = "col-4"><input  oninput = "slide()" type = "range" min = "0" max = "10" value = "5" class = "slider"></text>
+  <text class = "col-4"><input type = "range" min = "0" max = "10" value = "5" class = "slider" id = "between"></text>
   <text class = "col-1"><text>Grow</text>
   </text>
 </text>
 <text class = "row">
   <text class = "col-1">Red Maple
-  <button oninput = "buta()" id = "bua"></button></text>
+  <button oninput = "but(0)" id = "bua"></button></text>
   <text class = "col-1">Loblolly Pine
-  <button oninput = "butb()" id = "bub"></button></text>
+  <button oninput = "but(1)" id = "bub"></button></text>
   <text class = "col-1">Sweetgum
-  <button oninput = "butc()" id = "buc"></button></text>
+  <button oninput = "but(2)" id = "buc"></button></text>
   <text class = "col-1">Douglas Fir
-  <button oninput = "butd()" id = "bud"></button></text>
+  <button oninput = "but(3)" id = "bud"></button></text>
   <text class = "col-1">Quaking Aspen
-  <button oninput = "bute()" id = "bue"></button></text>
+  <button oninput = "but(4)" id = "bue"></button></text>
   <text class = "col-1">Sugar Maple
-  <button oninput = "butf()" id = "buf"></button></text>
+  <button oninput = "but(5)" id = "buf"></button></text>
   <text class = "col-1">Balsam Fir
-  <button oninput = "butg()" id = "bug"></button></text>
+  <button oninput = "but(6)" id = "bug"></button></text>
   <text class = "col-1">Flowering Dogwood
-  <button oninput = "buth()" id = "buh"></button></text>
+  <button oninput = "but(7)" id = "buh"></button></text>
+</text>
+<text class = "row">
+  <text class = "col-3"><text id = "cas"></text></text>
+  <text class = "col-3"><text id = "cle"></text></text>
 </text>
 </body>
 <script>
@@ -104,12 +108,19 @@ function perform(){
   }
   var a = 0;
   while (a < 8){
-    cash = cash + (Math.pow(10,a)*lis[a])*(milsec/1000);
+    cash = cash + (Math.pow(10,a)*lis[a])*(milsec/1000)*(document.getElementById("between").value/10);
+    clean = clean + (Math.pow(10,a)*lis[a])*(milsec/1000)*((10 - document.getElementById("between").value)/10);
     a = a + 1;
   }
+  document.getElementById("cas").innerHTML = Math.floor(cash);
+  document.getElementById("cle").innerHTML = Math.floor(clean);
 }
 function cost(inp){
   return Math.ceil(Math.pow(10,inp + 1)*Math.pow(1.1,lis[inp]));
+}
+function but(inp){
+  cash = cash - cost(inp);
+  lis[inp] = lis[inp] + 1;
 }
 </script>
 </html>
