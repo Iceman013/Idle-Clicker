@@ -60,18 +60,18 @@
 </text>
 </body>
 <script>
-var milsec = 10;
+var milsec = 100;
 var program = setInterval(perform, milsec);
 var lis = [1,0,0,0,0,0,0,0];
 var lett = "abcdefgh";
-var GROW = 1.5;
+var GROW = 1.2;
 var POW = 10;
 var cash = 0;
 var clean = 0;
 function perform(){
   var a = 0;
   while (a < 8){
-    document.getElementById("bu" + lett.substring(a,a + 1)).innerHTML = cost(a);
+    document.getElementById("bu" + lett.substring(a,a + 1)).innerHTML = show(cost(a));
     document.getElementById("bu" + lett.substring(a,a + 1)).disabled = true;
     if (cash >= cost(a)){
       document.getElementById("bu" + lett.substring(a,a + 1)).disabled = false;
@@ -80,8 +80,8 @@ function perform(){
     clean = clean + (Math.pow(POW,a)*lis[a])*(milsec/1000)*((10 - document.getElementById("between").value)/10);
     a = a + 1;
   }
-  document.getElementById("cas").innerHTML = Math.floor(cash);
-  document.getElementById("cle").innerHTML = Math.floor(clean);
+  document.getElementById("cas").innerHTML = show(Math.floor(cash));
+  document.getElementById("cle").innerHTML = show(Math.floor(clean));
 }
 function cost(inp){
   return Math.ceil(Math.pow(POW,inp + 1)*Math.pow(GROW,lis[inp]));
@@ -89,6 +89,20 @@ function cost(inp){
 function but(inp){
   cash = cash - cost(inp);
   lis[inp] = lis[inp] + 1;
+}
+function show(inp){
+  var out = inp.toString();
+  var output = "";
+  var a = 0;
+  while (a < out.length){
+    a = a + 3;
+    output = "," + out.substring(out.length - a, out.length - a + 3) + output;
+  }
+  if (a > out.length){
+    output = out.substring(0,3 - a - out.length) + output;
+  }
+  output = output.substring(1,output.length);
+  return output;
 }
 </script>
 </html>
