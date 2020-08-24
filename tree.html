@@ -63,60 +63,28 @@
 var milsec = 10;
 var program = setInterval(perform, milsec);
 var lis = [1,0,0,0,0,0,0,0];
+var lett = "abcdefgh";
+var GROW = 1.5;
+var POW = 10;
 var cash = 0;
 var clean = 0;
 function perform(){
-  document.getElementById("bua").innerHTML = cost(0);
-  document.getElementById("bub").innerHTML = cost(1);
-  document.getElementById("buc").innerHTML = cost(2);
-  document.getElementById("bud").innerHTML = cost(3);
-  document.getElementById("bue").innerHTML = cost(4);
-  document.getElementById("buf").innerHTML = cost(5);
-  document.getElementById("bug").innerHTML = cost(6);
-  document.getElementById("buh").innerHTML = cost(7);
-  document.getElementById("bua").disabled = true;
-  document.getElementById("bub").disabled = true;
-  document.getElementById("buc").disabled = true;
-  document.getElementById("bud").disabled = true;
-  document.getElementById("bue").disabled = true;
-  document.getElementById("buf").disabled = true;
-  document.getElementById("bug").disabled = true;
-  document.getElementById("buh").disabled = true;
-  if (cash >= cost(0)){
-    document.getElementById("bua").disabled = false;
-  }
-  if (cash >= cost(1)){
-    document.getElementById("bub").disabled = false;
-  }
-  if (cash >= cost(2)){
-    document.getElementById("buc").disabled = false;
-  }
-  if (cash >= cost(3)){
-    document.getElementById("bud").disabled = false;
-  }
-  if (cash >= cost(4)){
-    document.getElementById("bue").disabled = false;
-  }
-  if (cash >= cost(5)){
-    document.getElementById("buf").disabled = false;
-  }
-  if (cash >= cost(6)){
-    document.getElementById("bug").disabled = false;
-  }
-  if (cash >= cost(7)){
-    document.getElementById("buh").disabled = false;
-  }
   var a = 0;
   while (a < 8){
-    cash = cash + (Math.pow(10,a)*lis[a])*(milsec/1000)*(document.getElementById("between").value/10);
-    clean = clean + (Math.pow(10,a)*lis[a])*(milsec/1000)*((10 - document.getElementById("between").value)/10);
+    document.getElementById("bu" + lett.substring(a,a + 1)).innerHTML = cost(a);
+    document.getElementById("bu" + lett.substring(a,a + 1)).disabled = true;
+    if (cash >= cost(a)){
+      document.getElementById("bu" + lett.substring(a,a + 1)).disabled = false;
+    }
+    cash = cash + (Math.pow(POW,a)*lis[a])*(milsec/1000)*(document.getElementById("between").value/10);
+    clean = clean + (Math.pow(POW,a)*lis[a])*(milsec/1000)*((10 - document.getElementById("between").value)/10);
     a = a + 1;
   }
   document.getElementById("cas").innerHTML = Math.floor(cash);
   document.getElementById("cle").innerHTML = Math.floor(clean);
 }
 function cost(inp){
-  return Math.ceil(Math.pow(10,inp + 1)*Math.pow(1.1,lis[inp]));
+  return Math.ceil(Math.pow(POW,inp + 1)*Math.pow(GROW,lis[inp]));
 }
 function but(inp){
   cash = cash - cost(inp);
