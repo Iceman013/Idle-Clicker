@@ -14,7 +14,7 @@
   padding: 2px;
   text-align: center;
   border: 1px solid rgb(0,0,0);
-  white-space: pre-line;
+  white-space: no-wrap;
 }
 .col-1 {width: 12.5%;}
 .col-2 {width: 25%;}
@@ -22,7 +22,19 @@
 .col-4 {width: 75%;}
 .col-5 {width: 100%;}
 .slider {width: 100%;}
-.button {width: 100%;}
+.btn-grp .btn {
+  background-color: rgb(255,255,255);
+  color: rgb(0,0,0);
+  border: 1px solid rgb(0,0,0);
+  width: 12.5%;
+  display: inline-block;
+  float: left;
+  border radius: 0px;
+  transition: 0.1s;
+}
+.btn-grp .btn:hover {
+  background-color: rgb(0,0,255);
+}
 </style>
 <body>
 <text class = "row">
@@ -37,23 +49,25 @@
   </text>
 </text>
 <text class = "row">
-  <text class = "col-1">Red Maple
-  <button onclick = "but(0)" id = "bua"></button></text>
-  <text class = "col-1">Loblolly Pine
-  <button onclick = "but(1)" id = "bub"></button></text>
-  <text class = "col-1">Sweetgum
-  <button onclick = "but(2)" id = "buc"></button></text>
-  <text class = "col-1">Douglas Fir
-  <button onclick = "but(3)" id = "bud"></button></text>
-  <text class = "col-1">Quaking Aspen
-  <button onclick = "but(4)" id = "bue"></button></text>
-  <text class = "col-1">Sugar Maple
-  <button onclick = "but(5)" id = "buf"></button></text>
-  <text class = "col-1">Balsam Fir
-  <button onclick = "but(6)" id = "bug"></button></text>
-  <text class = "col-1">Flowering Dogwood
-  <button onclick = "but(7)" id = "buh"></button></text>
+  <text class = "col-1">Red Maple</text>
+  <text class = "col-1">Loblolly Pine</text>
+  <text class = "col-1">Sweetgum</text>
+  <text class = "col-1">Douglas Fir</text>
+  <text class = "col-1">Quaking Aspen</text>
+  <text class = "col-1">Sugar Maple</text>
+  <text class = "col-1">Balsam Fir</text>
+  <text class = "col-1">Flowering Dogwood</text>
 </text>
+<text class = "row">
+  <text class = "btn-grp">
+    <button onclick = "but(0)" id = "bua" class = "btn"></button>
+    <button onclick = "but(1)" id = "bub" class = "btn"></button>
+    <button onclick = "but(2)" id = "buc" class = "btn"></button>
+    <button onclick = "but(3)" id = "bud" class = "btn"></button>
+    <button onclick = "but(4)" id = "bue" class = "btn"></button>
+    <button onclick = "but(5)" id = "buf" class = "btn"></button>
+    <button onclick = "but(6)" id = "bug" class = "btn"></button>
+    <button onclick = "but(7)" id = "buh" class = "btn"></button></text></text>
 <text class = "row">
   <text class = "col-3"><text id = "cas"></text></text>
   <text class = "col-3"><text id = "cle"></text></text>
