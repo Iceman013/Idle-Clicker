@@ -94,15 +94,14 @@
     <text id = ""></text>
   </text>
 </text>
-<text id = "output"></text>
 </body>
 <script>
 var muta = 0.01;
-var STARTCOUNT = 100;
+var STARTCOUNT = 1000;
 var MILSEC = 1000;
 var original = {
-  camo: 0.5,
-  visi: 0.5
+  camo: 0.7,
+  visi: 0.7
 }
 var ideal = {
   camo: 0.2,
@@ -163,7 +162,6 @@ function death(){
     }
     a = a + 1;
   }
-  document.getElementById("output").innerHTML = parents.length;
 }
 function trial(inp){
   var out = true;
@@ -179,18 +177,17 @@ function trial(inp){
 
 
 function nextGen(){
-  children = [original];
+  children = parents;
   var a = 0;
   while (a < Math.floor(parents.length/2)){
-    addAnimal(parents[a], parents[parents.length - a]);
+    addAnimal(parents[a], parents[parents.length - a - 1]);
     a = a + 1;
   }
-  document.getElementsById("output").innerHTML = children.length;
 }
 function addAnimal(inpa, inpb){
   var ani = {
-    camo: mix(inpa.camo,inpb.camo,ideal.camo),
-    visi: mix(inpa.visi,inpb.visi,ideal.visi)
+    camo: mix(inpa.camo, inpb.camo, ideal.camo),
+    visi: mix(inpa.visi, inpb.visi, ideal.visi)
   }
   children.push(ani);
 }
