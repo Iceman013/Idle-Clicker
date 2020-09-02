@@ -62,8 +62,8 @@
 </text>
 <text class = "row">
   <text class = "col-1">
-    <text>Mutation Rate</text><br>
-    <text id = "mutationAvg"></text>
+    <text>Animal Count</text><br>
+    <text id = "quantity"></text>
   </text>
   <text class = "col-1">
     <text>Camouflage</text><br>
@@ -97,6 +97,7 @@
 </body>
 <script>
 var muta = 0.01;
+var startCount = 100;
 var original = {
   camo: 0.1,
   visi: 0.1
@@ -112,9 +113,9 @@ update();
 function update(){
   var a = 0;
   var avgs = [0,0];
-  document.getElementById("mutation").innerHTML = muta;
-  document.getElementById("camouflage").innerHTML = ideal.camo;
-  document.getElementById("vision").innerHTML = ideal.visi;
+  document.getElementById("mutation").innerHTML = round(muta,3);
+  document.getElementById("camouflage").innerHTML = round(ideal.camo,3);
+  document.getElementById("vision").innerHTML = round(ideal.visi,3);
   while (a < children.length){
     avgs[0] = avgs[0] + children[a].camo;
     avgs[1] = avgs[1] + children[a].visi;
@@ -122,8 +123,9 @@ function update(){
   }
   avgs[0] = avgs[0]/children.length;
   avgs[1] = avgs[1]/children.length;
-  document.getElementById("camouflageAvg").innerHTML = avgs[0];
-  document.getElementById("visionAvg").innerHTML = avgs[1];
+  document.getElementById("quantity").innerHTML = show(children.length);
+  document.getElementById("camouflageAvg").innerHTML = round(avgs[0],3);
+  document.getElementById("visionAvg").innerHTML = round(avgs[1],3);
 }
 
 
@@ -191,6 +193,9 @@ function mix(ania, anib, anii){
 
 
 
+function round(inpa, inpb){
+  return Math.round(inpa*Math.pow(10,inpb))/Math.pow(10,inpb);
+}
 function show(inp){
   var out = inp.toString();
   var output = "";
