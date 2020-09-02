@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<style>
+* {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  float: left;
+  padding: 2px;
+  text-align: center;
+  border: 1px solid rgb(0,0,0);
+  white-space: no-wrap;
+}
+.col-1 {width: 12.5%;}
+.col-2 {width: 25%;}
+.col-3 {width: 50%;}
+.col-4 {width: 75%;}
+.col-5 {width: 100%;}
+</style>
+<head>
+<title>Evolution Engine</title>
+</head>
+<body>
+<text class = "row">
+  <text class = "col-1">
+    <text>Mutation Rate</text><br>
+    <text id = "mutation"></text>
+  </text>
+  <text class = "col-1">
+    <text>Camouflage</text><br>
+    <text id = "camouflage"></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+</text>
+</body>
+<script>
+var muta = 0.01;
+var ideal = {
+  camo: 0
+}
+var animals = [];
+update();
+function update(){
+  document.getElementById("mutation").innerHTML = muta;
+  document.getElementById("camouflage").innerHTML = ideal.camo;
+}
+function addAnimal(inp,camoInp){
+  var ani = {
+    camo: camoInp
+  }
+  inp.push(ani);
+}
+function show(inp){
+  var out = inp.toString();
+  var output = "";
+  var a = 0;
+  while (a < out.length){
+    a = a + 3;
+    output = "," + out.substring(out.length - a, out.length - a + 3) + output;
+  }
+  if (a > out.length){
+    output = out.substring(0,3 - a - out.length) + output;
+  }
+  output = output.substring(1,output.length);
+  return output;
+}
+</script>
+</html>
