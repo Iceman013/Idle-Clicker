@@ -60,21 +60,101 @@
     <text id = ""></text>
   </text>
 </text>
+<text class = "row">
+  <text class = "col-1">
+    <text>Mutation Rate</text><br>
+    <text id = "mutationAvg"></text>
+  </text>
+  <text class = "col-1">
+    <text>Camouflage</text><br>
+    <text id = "camouflageAvg"></text>
+  </text>
+  <text class = "col-1">
+    <text>Vision</text><br>
+    <text id = "visionAvg"></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+  <text class = "col-1">
+    <text></text><br>
+    <text id = ""></text>
+  </text>
+</text>
 </body>
 <script>
 var muta = 0.01;
-var ideal = {
+var original = {
   camo: 0.1,
   visi: 0.1
+}
+var ideal = {
+  camo: 0.2,
+  visi: 0.2
 }
 var parents = [];
 var children = [];
 update();
 function update(){
+  var a = 0;
+  var avgs = [0,0];
   document.getElementById("mutation").innerHTML = muta;
   document.getElementById("camouflage").innerHTML = ideal.camo;
   document.getElementById("vision").innerHTML = ideal.visi;
+  while (a < children.length){
+    avgs[0] = avgs[0] + children[a].camo;
+    avgs[1] = avgs[1] + children[a].visi;
+    a = a + 1;
+  }
+  avgs[0] = avgs[0]/children.length;
+  avgs[1] = avgs[1]/children.length;
+  document.getElementById("camouflageAvg").innerHTML = avgs[0];
+  document.getElementById("visionAvg").innerHTML = avgs[1];
 }
+
+
+
+function progress(){
+  death();
+  nextGen();
+}
+
+
+
+function death(){
+  parents = [];
+  var a = 0;
+  while (a < children.length){
+    if (trial(children[a])){
+      parents.push(children[a]);
+    }
+    a = a + 1;
+  }
+}
+function trial(inp){
+  var out = true;
+  if (inp.camo < Math.random()){
+    out = false;
+  }
+  if (inp.visi < Math.random()){
+    out = false;
+  }
+  return out;
+}
+
 
 
 function nextGen(){
