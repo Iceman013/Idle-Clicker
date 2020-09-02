@@ -94,14 +94,15 @@
     <text id = ""></text>
   </text>
 </text>
+<text id = "output"></text>
 </body>
 <script>
 var muta = 0.01;
 var STARTCOUNT = 100;
-var MILSEC = 5000;
+var MILSEC = 1000;
 var original = {
-  camo: 0.1,
-  visi: 0.1
+  camo: 0.5,
+  visi: 0.5
 }
 var ideal = {
   camo: 0.2,
@@ -109,8 +110,15 @@ var ideal = {
 }
 var parents = [];
 var children = [];
+
+
+
 begin(STARTCOUNT);
+update();
 var program = setInterval(perform, MILSEC);
+
+
+
 function perform(){
   death();
   nextGen();
@@ -147,7 +155,7 @@ function begin(inp){
 
 
 function death(){
-  parents = [];
+  parents = [original];
   var a = 0;
   while (a < children.length){
     if (trial(children[a])){
@@ -155,6 +163,7 @@ function death(){
     }
     a = a + 1;
   }
+  document.getElementById("output").innerHTML = parents.length;
 }
 function trial(inp){
   var out = true;
@@ -170,12 +179,13 @@ function trial(inp){
 
 
 function nextGen(){
-  children = [];
+  children = [original];
   var a = 0;
   while (a < Math.floor(parents.length/2)){
     addAnimal(parents[a], parents[parents.length - a]);
     a = a + 1;
   }
+  document.getElementsById("output").innerHTML = children.length;
 }
 function addAnimal(inpa, inpb){
   var ani = {
