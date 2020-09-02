@@ -28,6 +28,12 @@
 <body>
 <text class = "row">
   <text class = "col-1">
+    <input type = "checkbox" id = "checka">
+    <label for = "checka">Run</label>
+  </text>
+</text>
+<text class = "row">
+  <text class = "col-1">
     <text>Mutation Rate</text><br>
     <text id = "mutation"></text>
   </text>
@@ -100,7 +106,7 @@ var muta = 0.01;
 var STARTCOUNT = 1000;
 var MILSEC = 1000;
 var original = {
-  camo: 0.7,
+  camo: 0.71,
   visi: 0.71
 }
 var ideal = {
@@ -119,9 +125,11 @@ var program = setInterval(perform, MILSEC);
 
 
 function perform(){
-  death();
-  nextGen();
-  update();
+  if (document.getElementById("checka").checked){
+    death();
+    nextGen();
+    update();
+  }
 }
 function update(){
   var a = 0;
