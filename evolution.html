@@ -107,6 +107,7 @@ var ideal = {
 }
 var parents = [];
 var children = [];
+begin();
 update();
 function update(){
   var a = 0;
@@ -123,6 +124,16 @@ function update(){
   avgs[1] = avgs[1]/children.length;
   document.getElementById("camouflageAvg").innerHTML = avgs[0];
   document.getElementById("visionAvg").innerHTML = avgs[1];
+}
+
+
+
+function begin(){
+  var a = 0;
+  while (a < startCount){
+    children.push(original);
+    a = a + 1;
+  }
 }
 
 
