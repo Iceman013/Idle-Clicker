@@ -36,8 +36,8 @@
     <text id = "camouflage"></text>
   </text>
   <text class = "col-1">
-    <text></text><br>
-    <text id = ""></text>
+    <text>Vision</text><br>
+    <text id = "vision"></text>
   </text>
   <text class = "col-1">
     <text></text><br>
@@ -64,20 +64,42 @@
 <script>
 var muta = 0.01;
 var ideal = {
-  camo: 0
+  camo: 0.1,
+  visi: 0.1
 }
-var animals = [];
+var parents = [];
+var children = [];
 update();
 function update(){
   document.getElementById("mutation").innerHTML = muta;
   document.getElementById("camouflage").innerHTML = ideal.camo;
+  document.getElementById("vision").innerHTML = ideal.visi;
 }
-function addAnimal(inp,camoInp){
-  var ani = {
-    camo: camoInp
+
+
+function nextGen(){
+  children = [];
+  var a = 0;
+  while (a < Math.floor(parents.length/2)){
+    addAnimal(parents[a], parents[parents.length - a]);
+    a = a + 1;
   }
-  inp.push(ani);
 }
+function addAnimal(inpa, inpb){
+  var ani = {
+    camo: mix(inpa.camo,inpb.camo,ideal.camo),
+    visi: mix(inpa.visi,inpb.visi,ideal.visi)
+  }
+  children.push(ani);
+}
+function mix(ania, anib, anii){
+  var ra = Math.random();
+  var rb = Math.random();
+  return (1 - rb*muta)*((1 - ra)*ania + ra*anib) + rb*muta*anii;
+}
+
+
+
 function show(inp){
   var out = inp.toString();
   var output = "";
