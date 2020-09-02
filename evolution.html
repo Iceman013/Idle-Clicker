@@ -97,7 +97,8 @@
 </body>
 <script>
 var muta = 0.01;
-var startCount = 100;
+var STARTCOUNT = 100;
+var MILSEC = 5000;
 var original = {
   camo: 0.1,
   visi: 0.1
@@ -108,8 +109,13 @@ var ideal = {
 }
 var parents = [];
 var children = [];
-begin();
-update();
+begin(STARTCOUNT);
+var program = setInterval(perform, MILSEC);
+function perform(){
+  death();
+  nextGen();
+  update();
+}
 function update(){
   var a = 0;
   var avgs = [0,0];
@@ -130,19 +136,12 @@ function update(){
 
 
 
-function begin(){
+function begin(inp){
   var a = 0;
-  while (a < startCount){
+  while (a < inp){
     children.push(original);
     a = a + 1;
   }
-}
-
-
-
-function progress(){
-  death();
-  nextGen();
 }
 
 
